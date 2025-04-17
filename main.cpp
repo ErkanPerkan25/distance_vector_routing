@@ -1,10 +1,8 @@
-#include <algorithm>
 #include <fstream>
 #include <iostream>
 #include <map>
 #include <vector>
 #include "Edge.hpp"
-#include "Router.hpp"
 
 
 using namespace std;
@@ -105,67 +103,13 @@ int main(int argc, char *argv[]){
 
                             routers[routerName].push_back(tableData);
                         }
-                    }
-                }
-            }
+                        else if (edge.getRouter2Name() == router.first) {
+                            info tableData; 
+                            tableData.name = edge.getRouter1Name();
+                            tableData.cost = edge.getCost();
 
-        }
 
-        cout << "> ";
-        cin >> command; 
-    }
-
-/*
-    int count = 0;
-
-    // don't know if im allowed to do this    
-    sort(nodes.begin(), nodes.end());
-    nodes.erase(unique(nodes.begin(), nodes.end()), nodes.end());
-
-    vector<Router> routers;
-
-    for(auto i : nodes){
-        Router router(i);
-        routers.push_back(router);
-    }
-
-    char command;
-    cout << "> ";
-
-    cin >> command; 
-
-    while(command != 'q'){
-        if(command == 'q'){
-            return 1;
-        }
-        else if(command == 'p'){
-            string router;
-            cin >> router;
-
-            for(auto i : routers){
-                if(i.getRouterName() == router){
-                    cout << i.getNextHop(router) << endl;;
-                }
-            }
-
-        }
-        else if (command == 'l') {
-            for (auto i : routers) {
-                cout << i.getNextHop(i.getRouterName()) << endl;
-            } 
-        }
-        else if (command == 'u') {
-            string router; 
-            cin >> router;
-
-            for(auto i : edges){
-                if(i.getRouter1Name() == router){
-                    string otherRouter = i.getRouter2Name();                    
-                    int cost = i.getCost();
-
-                    for(auto j : routers){
-                        if (j.getRouterName() == router) {
-                            j.addNewHop(otherRouter, cost);
+                            routers[routerName].push_back(tableData);
                         }
                     }
                 }
@@ -177,6 +121,5 @@ int main(int argc, char *argv[]){
         cin >> command; 
     }
 
-*/
     return 0;
 }
