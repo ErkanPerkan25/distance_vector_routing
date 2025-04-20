@@ -4,14 +4,14 @@ CXXFLAGS := -c -Wall -ansi -pedantic -std=c++20
 
 all: exe
 
-exe: main.o
-	$(CXX) -o exe main.o
+exe: dvr.o
+	$(CXX) -o exe dvr.o
 
 
-main.o: main.cpp 
-	$(CXX) $(CXXFLAGS) main.cpp
+dvr.o: dvr.cpp 
+	$(CXX) $(CXXFLAGS) dvr.cpp
 
 clean:
-	/bin/rm -f *~ *.o exe main.o
+	/bin/rm -f *~ *.o exe dvr.o 
 
 .PHONY: clean
