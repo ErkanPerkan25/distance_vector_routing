@@ -1,10 +1,7 @@
-#include <algorithm>
 #include <csignal>
 #include <fstream>
 #include <iostream>
 #include <map>
-#include <vector>
-#include "Edge.hpp"
 
 
 using namespace std;
@@ -112,19 +109,33 @@ int main(int argc, char *argv[]){
             cin >> routerName;
 
             if (network.find(routerName) != network.end()) {
-                for(auto i : network[routerName].neigbours){
-                    if(network[routerName].routingTable.find(i.first) == network[routerName].routingTable.end()){
-                        cout << "din't find it" << endl;
-                        vectorInfo newT;
-                        newT.destiantion = i.first;
-                        newT.cost = i.second;
+                for(auto i  : network[routerName].neigbours){
+                    
+                    for (auto j : network[i.first].routingTable){
+                    
+                        if(i.first == routerName){
+                            continue;
+                        }
 
-                        network[routerName].routingTable.insert({i.first, newT});
-                    }
-                    else{
-                    }
+                        int newCost =  i.second + j.second.cost; 
 
+                       
+
+                        if(network[routerName].routingTable.find(j.first) == network[routerName].routingTable.end() || newCost < network[routerName].routingTable.find(j.first)->second.cost){
+                        
+                            vectorInfo newT;
+                            newT.destiantion = i.first;
+                            newT.cost = newCost;
+
+                            //network[routerName].routingTable.insert({j.first, newT});
+                            network[routerName].routingTable[j.first] = {i.first, newCost};
+                        }
+
+                                           }
                 }
+            }
+            else {
+                cout << "Router not found" << endl;
             }
             
         }
