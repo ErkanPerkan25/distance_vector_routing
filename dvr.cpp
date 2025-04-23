@@ -1,3 +1,10 @@
+/**************************************************************************************
+* Author: Eric Hansson
+* Date: 04/22/2024
+* File: dvr.cpp
+* Purpose: To simulate updating routing tables of routers with the distance vector 
+* routing approach
+**************************************************************************************/
 #include <csignal>
 #include <fstream>
 #include <iostream>
@@ -170,7 +177,8 @@ int main(int argc, char *argv[]){
             }
             
         }
-
+        
+        // Reads the next command
         cout << "> ";
         cin >> command; 
     }
